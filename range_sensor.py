@@ -35,6 +35,12 @@ distance = distance / 2
 
 distance = round(distance, 2)
 
+
 print "Distance:",distance,"cm"
+
+f = open('/home/pi/range.txt', 'a')
+f.write('%d' %distance)
+f.write('\n')
+f.close()
 
 GPIO.cleanup()
