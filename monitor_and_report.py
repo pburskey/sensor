@@ -17,13 +17,14 @@ GPIO.setup(TRIG,GPIO.OUT)
 GPIO.setup(ALERT,GPIO.OUT)
 GPIO.setup(ECHO,GPIO.IN)
 
-def settle():
+def settle(settleTime):
     GPIO.output(TRIG, False)
     print "Waiting For Sensor To Settle"
-    time.sleep(2)
+    time.sleep(settleTime)
 
 
 def ping(shouldSettle):
+    
     #print "Sending Trig signal"
     GPIO.output(TRIG, True)
 
@@ -49,18 +50,20 @@ def ping(shouldSettle):
     distance = round(distance, 2)
 
     if shouldSettle > 0 :
-        settle()
+        settle(shouldSettle)
 
     return distance
 
 
 calibrationDistance = (ping(1) + ping(1) + ping(1))
 
-toggle = False
-for i in range(5):
-    GPIO.output(ALERT, not toggle)
-    time.sleep(1)
+#toggle = False
+#for i in range(10):
+#    toggle = not toggle
+#    GPIO.output(ALERT, toggle)
+#    time.sleep(500.0/1000)
 
+#GPIO.output(ALERT, False)
 
 
 
@@ -72,15 +75,16 @@ print "Acceptable tolerance: ",tolerance
 threshold = calibrationDistance * tolerance
 print "Threshold: ", threshold
 
+print "Calibration Complete, taking measurements"
 
 measurements = []
 now = datetime.now()
 
 start = datetime.now().isoformat()
-for i in range(10):
+for i in range(30):
     current = ping(0)
     diff = calibrationDistance - current
-    #print "Current Distance: ", current," Diff: ",diff
+    print "Current Distance: ", current," Diff: ",diff
 
     #if abs(diff) > threshold:
     #    print "ALERT ALERT ALERT"
@@ -89,12 +93,15 @@ for i in range(10):
     #    GPIO.output(ALERT, False)
 
     measurements.append(current)
-    time.sleep(500.0/1000)
+    time.sleep(1)	
+
+stop = datetime.now().isoformat()
 
 GPIO.cleanup()
 
+print "Measurements complete"
 
-stop = datetime.now().isoformat()
+
 content = {"start":start,"stop":stop,"measurements":measurements}
 
 
