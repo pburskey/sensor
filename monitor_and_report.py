@@ -78,7 +78,7 @@ print "Threshold: ", threshold
 print "Calibration Complete, taking measurements"
 
 measurements = []
-now = datetime.now()
+
 
 start = datetime.now().isoformat()
 for i in range(30):
@@ -92,7 +92,10 @@ for i in range(30):
     #    time.sleep(1)
     #    GPIO.output(ALERT, False)
 
-    measurements.append(current)
+    now = datetime.now()
+
+    measurements.append({"timeStamp":now.isoformat(), "measurement": current})
+
     time.sleep(1)	
 
 stop = datetime.now().isoformat()
@@ -102,7 +105,7 @@ GPIO.cleanup()
 print "Measurements complete"
 
 
-content = {"start":start,"stop":stop,"measurements":measurements}
+content = {"start":start,"stop":stop,"items":measurements}
 
 
 api_token = 'your_api_token'

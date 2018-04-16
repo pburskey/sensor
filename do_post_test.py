@@ -10,15 +10,14 @@ now = datetime.now()
 
 start = datetime.now().isoformat()
 measurements = []
-measurements.append(1.12)
-measurements.append(2.23)
-measurements.append(3.45)
-measurements.append(4.67)
-measurements.append(5.89)
-
+measurements.append({"timeStamp":"now", "measurement": 1.12})
+measurements.append({"timeStamp":"now", "measurement": 2.23})
+measurements.append({"timeStamp":"now", "measurement": 3.45})
+measurements.append({"timeStamp":"now", "measurement": 4.67})
+measurements.append({"timeStamp":"now", "measurement": 5.89})
 
 stop = datetime.now().isoformat()
-content = {"start":start,"stop":stop,"measurements":measurements}
+content = {"start":start,"stop":stop,"items":measurements}
 
 response = requests.post(api_url_base, headers=headers, json=content)
 

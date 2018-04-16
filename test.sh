@@ -1,1 +1,1 @@
-curl -d '{"start":"value1", "stop":"value2","measurements":["1","2","3"]    }' -H "Content-Type: application/json" -X POST http://eskimo:8080/sensor
+curl -d '{"start":"value1", "stop":"value2","items":[ {"timeStamp":"123","measurement":"12.56"}]    }' -H "Content-Type: application/json" -X POST http://localhost:8080/sensor
