@@ -9,7 +9,7 @@ GPIO.setmode(GPIO.BCM)
 TRIG = 23
 ECHO = 24
 ALERT = 17
-
+start = datetime.now().isoformat()
 print "calibration in progress"
 
 
@@ -80,7 +80,7 @@ print "Calibration Complete, taking measurements"
 measurements = []
 
 
-start = datetime.now().isoformat()
+
 for i in range(30):
     current = ping(0)
     diff = calibrationDistance - current
