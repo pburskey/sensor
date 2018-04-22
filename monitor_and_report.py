@@ -9,7 +9,7 @@ GPIO.setmode(GPIO.BCM)
 TRIG = 23
 ECHO = 24
 ALERT = 17
-start = datetime.now().isoformat()
+start = datetime.now()
 print "calibration in progress"
 
 
@@ -21,6 +21,12 @@ def settle(settleTime):
     GPIO.output(TRIG, False)
     print "Waiting For Sensor To Settle"
     time.sleep(settleTime)
+
+def formatDateAndTime(aDateAndTime)
+
+    format = '%Y-%m-%d_%H:%M:%S.'
+
+    return (aDateAndTime.strftime(format))
 
 
 def ping(shouldSettle):
@@ -94,18 +100,18 @@ for i in range(50):
 
     now = datetime.now()
 
-    measurements.append({"timeStamp":now.isoformat(), "measurement": current})
+    measurements.append({"timeStamp":formatDateAndTime(now), "measurement": current})
 
     time.sleep(1)	
 
-stop = datetime.now().isoformat()
+stop = datetime.now()
 
 GPIO.cleanup()
 
 print "Measurements complete"
 
 
-content = {"start":start,"stop":stop,"items":measurements}
+content = {"start":formatDateAndTime(start),"stop":formatDateAndTime(stop),"items":measurements}
 
 
 api_token = 'your_api_token'
