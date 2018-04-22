@@ -24,7 +24,7 @@ def settle(settleTime):
 
 def formatDateAndTime(aDateAndTime)
 
-    format = '%Y-%m-%d_%H:%M:%S.'
+    format = '%Y-%m-%d_%H:%M:%S'
 
     return (aDateAndTime.strftime(format))
 
