@@ -22,7 +22,7 @@ def settle(settleTime):
     print "Waiting For Sensor To Settle"
     time.sleep(settleTime)
 
-def formatDateAndTime(aDateAndTime)
+def formatDateAndTime(aDateAndTime):
 
     format = '%Y-%m-%d_%H:%M:%S'
 
