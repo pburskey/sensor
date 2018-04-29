@@ -14,7 +14,7 @@ print "calibration in progress"
 
 
 GPIO.setup(TRIG,GPIO.OUT)
-#GPIO.setup(ALERT,GPIO.OUT)
+GPIO.setup(ALERT,GPIO.OUT)
 GPIO.setup(ECHO,GPIO.IN)
 
 def settle(settleTime):
@@ -37,6 +37,8 @@ def ping(shouldSettle):
     time.sleep(0.00001)
     GPIO.output(TRIG, False)
 
+    pulse_start = 0
+    pulse_end = 0
     while GPIO.input(ECHO)==0:
         pulse_start = time.time()
 
@@ -87,7 +89,7 @@ measurements = []
 
 
 
-for i in range(50):
+for i in range(10):
     current = ping(0)
     diff = calibrationDistance - current
     print "Current Distance: ", current," Diff: ",diff
