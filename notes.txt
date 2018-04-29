@@ -8,3 +8,12 @@ After that, you need to restart rsyslog via
 
 $ /etc/init.d/rsyslog restart
 and you will find the cron logs in /var/log/cron.log
+
+
+
+
+
+crontab.....
+
+sudo crontab -e
+* * * * * /home/pi/cron_range_sensor.sh 2>&1 | /usr/bin/logger -t tag_sensor
