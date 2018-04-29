@@ -14,7 +14,7 @@ print "calibration in progress"
 
 
 GPIO.setup(TRIG,GPIO.OUT)
-GPIO.setup(ALERT,GPIO.OUT)
+#GPIO.setup(ALERT,GPIO.OUT)
 GPIO.setup(ECHO,GPIO.IN)
 
 def settle(settleTime):
@@ -106,7 +106,7 @@ for i in range(10):
 
 stop = datetime.now()
 
-GPIO.cleanup()
+
 
 print "Measurements complete"
 
@@ -119,3 +119,5 @@ api_url_base = 'http://eskimo:8080/sensor/'
 
 headers = {'Content-Type': 'application/json'}
 response = requests.post(api_url_base, headers=headers, json=content)
+
+GPIO.cleanup()
