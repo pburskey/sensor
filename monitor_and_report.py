@@ -87,7 +87,7 @@ measurements = []
 
 
 
-for i in range(50):
+for i in range(30):
     current = ping(0)
     diff = calibrationDistance - current
     print "Current Distance: ", current," Diff: ",diff
