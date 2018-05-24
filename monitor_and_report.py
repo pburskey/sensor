@@ -17,6 +17,19 @@ GPIO.setup(TRIG,GPIO.OUT)
 GPIO.setup(ALERT,GPIO.OUT)
 GPIO.setup(ECHO,GPIO.IN)
 
+
+content = ""
+
+
+api_token = 'your_api_token'
+api_url_base = 'http://eskimo:8080/checkin'
+
+headers = {'Content-Type': 'application/json'}
+response = requests.get(api_url_base, headers=headers, json=content)
+
+
+
+
 def settle(settleTime):
     GPIO.output(TRIG, False)
     print "Waiting For Sensor To Settle"
